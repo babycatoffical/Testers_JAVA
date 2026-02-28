@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: SpringDebuggers
+  aop:
+    auto: true
+#    This default datasource setting is based on compose.yml
+  datasource:
+#    Postgres (default)
+    driver-class-name: org.postgresql.Driver
+#    driver-class-name: com.mysql.jdbc.Driver
+    oracleucp:
+      port-number: 5433
+    password: secret
+    username: postgres
+    url: jdbc:postgresql://localhost:5432/postgres
+server:
+  port: 8080

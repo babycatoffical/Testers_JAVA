@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.babycat.testers.mappers.UserMapper">
+    <resultMap
+            id="test"
+            type="org.babycat.testers.entity.User">
+        <id property="id" column="user_id" />
+        <result property="name" column="user_name" />
+    </resultMap>
+    <insert id="setUser" parameterType="org.babycat.testers.entity.User">
+        INSERT INTO my_table(user_id, user_name)
+        VALUES (#{id}, #{name})
+    </insert>
+    <select id="getAllUser" resultMap="test">
+        SELECT *
+        FROM my_table
+    </select>
+    <select id="getUserById" resultMap="test">
+        SELECT user_id, user_name
+        FROM my_table
+        WHERE id = #{id}
+    </select>
+    <select id="getUserNameById" resultType="string">
+        SELECT user_name
+        FROM my_table
+        WHERE id = #{id}
+    </select>
+</mapper>
