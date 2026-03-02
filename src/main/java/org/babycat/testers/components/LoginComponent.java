@@ -8,10 +8,6 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class LoginComponent implements BasicComponent {
 
-    private static String UserName;
-    private static String Password;
-    private static String Email;
-
     /**
      * Well, this is still not working now.
      * */

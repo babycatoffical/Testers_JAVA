@@ -27,4 +27,5 @@
         FROM my_table
         WHERE id = #{id}
     </select>
+
 </mapper>

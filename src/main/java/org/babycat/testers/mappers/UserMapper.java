@@ -1,17 +1,19 @@
 package org.babycat.testers.mappers;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.babycat.testers.entity.User;
-import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * The Mapper of BasicComponent,
  * */
-@Component("UserMapper")
+@Mapper
 public interface UserMapper {
     /**
      * gets the all users.
      * */
-    User getAllUser();
+    List<User> getAllUser();
     /**
      * gets the user using parameters, the ID.
      * @param id the user id
@@ -24,5 +26,5 @@ public interface UserMapper {
      * */
     String getUserNameById(Long id);
 
-    User setUser(User user);
+    void setUser(User user);
 }

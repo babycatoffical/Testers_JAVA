@@ -1,43 +1,84 @@
 package org.babycat.testers.repository;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.babycat.testers.entity.User;
 import org.babycat.testers.mappers.UserMapper;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.jspecify.annotations.NonNull;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class LoginRepository {
 
-    @Qualifier("UserMapper")
     private static UserMapper UserMapper;
+    private static final String name = "LoginRepo";
+    private static final Logger logger = LogManager.getLogger();
 
-    public static void SaveUser(User user) {
-        UserMapper.setUser(user);
+    public void SaveUser(User user) {
+        try {
+            UserMapper.setUser(user);
+        }
+        catch (Exception e) {
+            Error(e);
+        }
+        finally {
+            logger.info("[{}.INFO] Save user complete.",
+                    name.toUpperCase());
+        }
     }
 
     /**
-     * Gets all users. but you can select anyone.
+     * Get all users from your connected Database.
      * @author babycat_offical
+     * @return return Users in List
      * */
-    public static User GetUser() {
+    public List<User> GetUser() {
+        List<User> Data = UserMapper.getAllUser();
         try {
-            User Data = UserMapper.getAllUser();
             if (!(Data == null)) {
                 return Data;
             }
+            logger.warn("[{}.WARN] Cannot found users in DB.", name.toUpperCase());
             return null;
         } catch (Exception e) {
-            System.err.println("*\n| [REPOSITORY.ERROR] We're sorry. an exception was thrown in LoginRepository."
-            + "\n| Details: " + e.getMessage() + "\n*");
+            Error(e);
         }
         return null;
     }
 
-    public static void GetUser(Long id) {
-        UserMapper.getUserById(id);
+    /**
+     * Gets the user using User's ID
+     * @param id The user id
+     * @return returns user info
+     * @author babycat_offical
+     * @since 2026-02-28
+     * */
+    public User GetUser(Long id) {
+        try {
+            UserMapper.getUserById(id);
+        } catch (Exception e) {
+            Error(e);
+        }
+            return UserMapper.getUserById(id);
     }
 
-    public static void GetUserName(Long id) {
-        UserMapper.getUserNameById(id);
+    public String GetUserName(Long id) {
+        try {
+            String name = UserMapper.getUserNameById(id);
+            if (!(name == null)) {
+                return name;
+            }
+            return null;
+        } catch (Exception e) {
+            Error(e);
+        }
+        return null;
+    }
+
+    private static void Error(@NonNull Exception e) {
+        logger.error("*\n| [{}.ERROR] We're sorry. an exception was thrown in LoginRepository.\n| Details: {} \n*",
+                name.toUpperCase() ,e.getMessage());
     }
 }

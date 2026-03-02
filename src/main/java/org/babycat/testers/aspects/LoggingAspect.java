@@ -17,8 +17,9 @@ public class LoggingAspect {
     @Around(value = "execution(* org.babycat.testers.components.LoginComponent.Run(..))")
     public static Object LoginRunAspect(ProceedingJoinPoint joinPoint) throws Throwable {
         System.out.printf(StartMessage(joinPoint.getSignature().getName(), "Around"));
+        Object result = null;
         try {
-            joinPoint.proceed();
+            result = joinPoint.proceed();
         }
         catch (Exception e) {
             System.err.println(ErrorMessage(joinPoint.getSignature().getName(), e.getMessage(), e.getCause(), "Around"));
@@ -26,6 +27,6 @@ public class LoggingAspect {
         finally {
             System.out.println(CompleteMessage(joinPoint.getSignature().getName(), "Around"));
         }
-        return joinPoint.proceed();
+        return result;
     }
 }
