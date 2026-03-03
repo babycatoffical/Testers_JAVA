@@ -9,8 +9,14 @@ public class MasterConfig {
     /**
      * This component is untitled and still not working.
      * */
-    @Bean(name = "Untitled Class One")
+
+
+    @Bean(name = "inComponent")
     public LoginComponent getUntitledClassOne() {
         return new LoginComponent();
     }
+
+
+
+
 }

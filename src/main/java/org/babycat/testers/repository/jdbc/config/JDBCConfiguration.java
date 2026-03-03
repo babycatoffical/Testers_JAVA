@@ -7,11 +7,11 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 
-@Configuration
+@Configuration(proxyBeanMethods = false)
 class JDBCConfiguration {
-    @Bean("")
+    @Bean(name = "Datasource")
     @ConfigurationProperties("app.datasource")
     public DataSource dataSource() {
-        return new DataSourceBuilder().create().build();
+        return DataSourceBuilder.create().build();
     }
 }

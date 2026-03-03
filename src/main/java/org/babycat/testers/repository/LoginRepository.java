@@ -5,13 +5,20 @@ import org.apache.logging.log4j.Logger;
 import org.babycat.testers.entity.User;
 import org.babycat.testers.mappers.UserMapper;
 import org.jspecify.annotations.NonNull;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.SQLTimeoutException;
 import java.util.List;
 
 @Repository
 public class LoginRepository {
 
+    @Qualifier("Datasource")
+    private DataSource DataSource;
     private static UserMapper UserMapper;
     private static final String name = "LoginRepo";
     private static final Logger logger = LogManager.getLogger();
