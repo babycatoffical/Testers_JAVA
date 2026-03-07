@@ -17,7 +17,7 @@ bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
-### IntelliJ IDEA ###
+### IntelliJ IDEA & WebStorm ###
 .idea
 *.iws
 *.iml
@@ -35,3 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Node.js ###
+src/main/frontend/node_modules
+src/main/frontend/package-lock.json
