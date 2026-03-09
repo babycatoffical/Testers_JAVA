@@ -29,7 +29,11 @@ repositories {
 extra["snippetsDir"] = file("build/generated-snippets")
 
 dependencies {
-	// Source: https://mvnrepository.com/artifact/io.netty.incubator/netty-incubator-codec-http3
+	//Security Updates
+	implementation("tools.jackson.core:jackson-core:3.1.0")
+	implementation("at.yawk.lz4:lz4-java:1.10.2")
+
+	// Basic
 	implementation("io.netty.incubator:netty-incubator-codec-http3:0.0.30.Final")
 	implementation("io.netty:netty-tcnative-boringssl-static")
 	implementation("org.springframework.boot:spring-boot-starter-amqp")
