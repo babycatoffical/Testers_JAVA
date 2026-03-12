@@ -31,7 +31,6 @@ extra["snippetsDir"] = file("build/generated-snippets")
 dependencies {
 	//Security Updates
 	implementation("tools.jackson.core:jackson-core:3.1.0")
-	implementation("at.yawk.lz4:lz4-java:1.10.2")
 
 	// Basic
 	implementation("io.netty.incubator:netty-incubator-codec-http3:0.0.30.Final")
